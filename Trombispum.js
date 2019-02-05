@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trombi.js
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  Personaliser le trombi
 // @author       AguaDoce
 // @match        http://intranet/Pages%20intranet/trombi_html/trombi.html
