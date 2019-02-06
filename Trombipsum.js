@@ -86,4 +86,43 @@
                desc.innerHTML = settings.description;
            }
         }
+        
+        // --- Création thèmes graphiques ---
+        var arp_style = document.createElement("select");
+        arp_style.id = "arp_style";
+		document.body.insertBefore(arp_style,document.body.firstChild);
+
+
+
+        TR_styleAdd = function(cls,name,css) {
+            var option = document.createElement("option");
+            option.value = cls;
+            option.text = name;
+            arp_style.appendChild(option);
+            TR_cssAdd(css);
+        }
+
+        TR_cssAdd = function(css) {
+            try {
+                style= document.getElementById('trombi_css');
+                style.innerHTML += css;
+            } catch (e)
+            {
+                style = document.createElement("style");
+                style.id = 'trombi_css';
+                style.setAttribute('type', 'text/css');
+                style.innerHTML = css;
+                document.head.appendChild(style);
+            }
+        }
+
+        // ajout de styles
+        TR_styleAdd('-1','style par defaut','');
+        TR_styleAdd('magicArp','rainbow arpege','@-moz-keyframes magicArp{from{background-position:top left}to{background-position:top right}}@-webkit-keyframes magicArp{from{background-position:top left}to{background-position:top right}}@-o-keyframes magicArp{from{background-position:top left}to{background-position:top right}}@-ms-keyframes magicArp{from{background-position:top left}to{background-position:top right}}@-khtml-keyframes magicArp{from{background-position:top left}to{background-position:top right}}@keyframes magicArp{from{background-position:top left}to{background-position:top right}} .magicArp * h2{background-image:-webkit-linear-gradient(left,red,orange,#ff0,green,#00f,indigo,violet,indigo,#00f,green,#ff0,orange,red);background-image:-moz-linear-gradient(left,red,orange,#ff0,green,#00f,indigo,violet,indigo,#00f,green,#ff0,orange,red);background-image:-o-linear-gradient(left,red,orange,#ff0,green,#00f,indigo,violet,indigo,#00f,green,#ff0,orange,red);background-image:-ms-linear-gradient(left,red,orange,#ff0,green,#00f,indigo,violet,indigo,#00f,green,#ff0,orange,red);background-image:-khtml-linear-gradient(left,red,orange,#ff0,green,#00f,indigo,violet,indigo,#00f,green,#ff0,orange,red);background-image:linear-gradient(left,red,orange,#ff0,green,#00f,indigo,violet,indigo,#00f,green,#ff0,orange,red);animation:magicArp .5s forwards linear infinite;background-size:50% auto;-webkit-background-clip:text;-moz-background-clip:text;-o-background-clip:text;-ms-background-clip:text;-khtml-background-clip:text;background-clip:text;color:transparent!important}' )
+
+	arp_style.addEventListener("change",function() {
+		let cls = this.value !== '-1' ? this.value : '';
+		document.body.classList = "";
+		document.body.classList.add(cls);
+	        });
         })();
